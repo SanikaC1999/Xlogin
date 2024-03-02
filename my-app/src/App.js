@@ -5,28 +5,37 @@ export default function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const passwordInputRef = useRef(null);
+  const usernameInputRef = useRef(null);
   const [message , setMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState("");
+  const [authenticated, setAuthenticated] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (username === "" || password === "") {
+
       if (username === "") {
         alert("Please fill the Username field.");
+        usernameInputRef.current.focus();
       } else if (password === "") {
         alert("Please fill the Password field.");
         passwordInputRef.current.focus();
       }
-      return;
-    }
 
     if (username === "user" && password === "password") {
       setMessage("Welcome, user")
       alert("Welcome, user");
+      setErrorMessage("");
+      setAuthenticated(true);
     } else {
       setMessage("Invalid username or password")
       alert("Invalid username or password");
       setUsername("")
       setPassword("")
+      setErrorMessage("Invalid username or password");
+      setAuthenticated(false);
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
     }
   };
 
