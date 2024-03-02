@@ -25,6 +25,8 @@ export default function App() {
     } else {
       setMessage("Invalid username or password")
       alert("Invalid username or password");
+      setUsername("")
+      setPassword("")
     }
   };
 
