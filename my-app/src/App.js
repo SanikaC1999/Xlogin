@@ -1,29 +1,30 @@
-import './App.css';
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import "./App.css";
 
 export default function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const passwordInputRef = useRef(null);
+  const [message , setMessage] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (username === "" || password === "") {
       if (username === "") {
         alert("Please fill the Username field.");
-        document.getElementById("usernameInput").focus();
       } else if (password === "") {
         alert("Please fill the Password field.");
-        document.getElementById("passwordInput").focus();
+        passwordInputRef.current.focus();
       }
       return;
     }
 
     if (username === "user" && password === "password") {
-      setMessage("Welcome, user");
+      setMessage("Welcome, user")
+      alert("Welcome, user");
     } else {
-      setMessage("Invalid username or password");
-      console.error("Invalid username or password")
+      setMessage("Invalid username or password")
+      alert("Invalid username or password");
     }
   };
 
@@ -38,13 +39,14 @@ export default function App() {
             id="usernameInput"
             type="text"
             value={username}
-            onChange={(e) => setUsername(e.target.value)} // Update username on typing
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </label>
         <label>
           Password:
           <input
+            ref={passwordInputRef}
             id="passwordInput"
             type="password"
             value={password}
@@ -57,4 +59,5 @@ export default function App() {
     </div>
   );
 }
+
 
