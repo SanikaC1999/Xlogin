@@ -23,6 +23,7 @@ export default function App() {
       setMessage("Welcome, user");
     } else {
       setMessage("Invalid username or password");
+      console.error("Invalid username or password")
     }
   };
 
@@ -37,7 +38,7 @@ export default function App() {
             id="usernameInput"
             type="text"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)} // Update username on typing
             required
           />
         </label>
@@ -56,3 +57,4 @@ export default function App() {
     </div>
   );
 }
+
